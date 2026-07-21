@@ -577,8 +577,9 @@ function getJaVoice(){
 // 2. Removed cancel() so sentences queue up naturally
 // 3. Added a function to handle long text by splitting it
 
-function speak(text, onEnd) {
-  if (!('speechSynthesis' in window)) return;
+function speak(text, onEnd){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
 
   // Split long text by Japanese punctuation to prevent timeout cuts
   const sentences = text.match(/[^。、？！\n]+[。、？！\n]*|.+/g) || [text];
